@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Array.prototype.reduce</title>
+</head>
+<body>
+<script src="reduce.js"></script>
+<script>
+var ret1 = ArrayReduce.call([0, 1, 2, 3, 4], function(previousValue, currentValue, index, array) {
+  return previousValue + currentValue
+})
+console.log( ret1 )
+
+var ret2 = ArrayReduce.call([ 'a', 'b', 'c', 'd' ], function( previousValue, currentValue, index, array ) {
+  return previousValue + currentValue
+})
+console.log( ret2 );
+</script>
+</body>
+</html>
