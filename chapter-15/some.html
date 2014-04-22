@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Array.prototype.some</title>
+</head>
+<body>
+<script src="some.js"></script>
+<script>
+var ret1 = ArraySome.call([0, 1, 2, 3, 4], function(kValue, k, o) {
+  return kValue > 3;
+})
+console.log( ret1 );
+</script>
+</body>
+</html>
