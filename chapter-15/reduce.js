@@ -1,35 +1,31 @@
+/**
+ * 
+ */
 function ArrayReduce( callbackfn, initialValue ) {
-  // step 1
+  /* 1. Let O be the result of calling ToObject passing the this value as the argument.*/
   var O = Object( this );
 
-  // step 2
+  /* 2. Let lenValue be the result of calling the [[Get]] internal method of O with the argument "length". */
   var lenValue = O.length;
 
-  // step 3
+  /* 3. Let len be ToUint32(lenValue). */
   var len = Number( lenValue );
 
-  // step 4
+  /* 4. If IsCallable(callbackfn) is false, throw a TypeError exception. */
   if ( typeof callbackfn !== 'function' ) {
     throw new TypeError( callbackfn + ' is not a function' );
   }
 
-  /**
-   * step 5
-   * If len is 0 and initialValue is not present, throw a TypeError exception.
-   */
+  /* 5. If len is 0 and initialValue is not present, throw a TypeError exception. */
   if ( len === 0 && !initialValue ) {
     throw new TypeError( this + ' must have items' );
   }
 
-  /**
-   * step 6
-   * Let k be 0
-   */
+  /* 6. Let k be 0 */
   var k = 0;
 
-  /**
-   * step 7
-   *  If initialValue is present, then
+  /*
+   * 7. If initialValue is present, then
    *    a. Set accumulator to initialValue.
    */
   if ( typeof initialValue !== 'undefined' ) {
@@ -47,7 +43,6 @@ function ArrayReduce( callbackfn, initialValue ) {
       var Pk = String( k );
 
       /* ii. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk. */
-
       var kPresent = O.hasOwnProperty( Pk );
 
       /* iii. If kPresent is true, then */
@@ -62,16 +57,16 @@ function ArrayReduce( callbackfn, initialValue ) {
 
     /* c. If kPresent is false, throw a TypeError exception. */
     if ( kPresent === false ) {
-      throw new TypeError('kPresent is false');
+      throw new TypeError( 'kPresent is false' );
     }
   }
 
   /* 9. Repeat, while k < len */
   while ( k < len ) {
-    // a. Let Pk be ToString(k).
+    /* a. Let Pk be ToString(k). */
     var Pk = String( k );
 
-    // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
+    /* b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk. */
     var kPresent = O.hasOwnProperty( Pk );
 
     /* c. If kPresent is true, then */
@@ -81,10 +76,10 @@ function ArrayReduce( callbackfn, initialValue ) {
 
       /* ii. Let accumulator be the result of calling the [[Call]] internal method of callbackfn with
       undefined as the this value and argument list containing accumulator, kValue, k, and O. */
-      accumulator = callbackfn.call( undefined, accumulator, kValue, k, O)
+      accumulator = callbackfn.call( undefined, accumulator, kValue, k, O );
     }
 
-    // d. Increase k by 1.
+    /* d. Increase k by 1. */
     k++;
   }
 
